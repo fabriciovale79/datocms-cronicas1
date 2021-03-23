@@ -50,9 +50,9 @@ export async function getStaticProps({ params, preview = false }) {
           }
           date
           ogImage: coverImage{
-            url(imgixParams: {fm: jpg, fit: clip, w: 2000, h: 1000 })
+            url(imgixParams: {fm: jpg, fit: clip,  w: 2000, h: 1000 })
           }
-          coverImage {
+          coverImage{
             responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 2000, h: 1000 }) {
               ...responsiveImageFragment
             }
