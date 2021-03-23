@@ -41,7 +41,7 @@ export async function getStaticProps({ params, preview = false }) {
               ...on ImageBlockRecord {
                 id
                 image {
-                  responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1000, h: 2000 }) {
+                  responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
                     ...responsiveImageFragment
                   }
                 }
@@ -50,10 +50,10 @@ export async function getStaticProps({ params, preview = false }) {
           }
           date
           ogImage: coverImage{
-            url(imgixParams: {fm: jpg, fit: clip,  w: 2000, h: 1000 })
+            url(imgixParams: {fm: jpg, fit: clip,  w: 1.0 })
           }
           coverImage{
-            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 2000, h: 1000 }) {
+            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
               ...responsiveImageFragment
             }
           }
