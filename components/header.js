@@ -6,7 +6,7 @@ export default function Header() {
       <Link href="/">
         <a className="hover:underline">Crônicas do Velho Normal.</a>
       </Link>
-      .
+      
     </h2>
   )
 }
