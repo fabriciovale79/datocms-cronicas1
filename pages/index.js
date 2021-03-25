@@ -23,6 +23,62 @@ export async function getStaticProps({ preview }) {
             ...metaTagsFragment
           }
         }
+
+        post(filter: {slug: {eq: "cover1"}}) {
+          title
+          slug
+          content {
+            value
+            blocks {
+              __typename
+              ...on ImageBlockRecord {
+                id
+                image {
+                  responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
+                    srcSet
+    webpSrcSet
+    sizes
+    src
+    width
+    height
+    aspectRatio
+    alt
+    title
+    base64
+                  }
+                    
+                  
+                }
+              }
+            }
+          }
+          date
+          ogImage: coverImage{
+            url(imgixParams: {fm: jpg, fit: clip,  w: 1.0 })
+          }
+          coverImage{
+            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
+              srcSet
+    webpSrcSet
+    sizes
+    src
+    width
+    height
+    aspectRatio
+    alt
+    title
+    base64
+            }
+              
+          }
+          author {
+            name
+            picture {
+              url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100})
+            }
+          }
+        }
+
         allPosts(orderBy: date_DESC, first: 20) {
           title
           slug
@@ -67,10 +123,10 @@ export async function getStaticProps({ preview }) {
 
 export default function Index({ subscription }) {
   const {
-    data: { allPosts, site, blog },
+    data: { allPosts, site, blog, post },
   } = useQuerySubscription(subscription);
 
-  const heroPost = allPosts[0];
+  const heroPost = post;//allPosts[0];
   const morePosts = allPosts.slice(1);
   const metaTags = blog.seo.concat(site.favicon);
 
