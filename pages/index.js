@@ -27,6 +27,12 @@ export async function getStaticProps({ preview }) {
         post(filter: {slug: {eq: "cover1"}}) {
           title
           slug
+          author {
+            name
+            picture {
+              url(imgixParams: {fm: jpg, fit: clip, mask:ellipse, w: 200, h: 200})
+            }
+          }
           content {
             value
             blocks {
@@ -36,15 +42,15 @@ export async function getStaticProps({ preview }) {
                 image {
                   responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
                     srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
+                    webpSrcSet
+                    sizes
+                    src
+                    width
+                    height
+                    aspectRatio
+                    alt
+                    title
+                    base64
                   }
                     
                   
@@ -59,27 +65,21 @@ export async function getStaticProps({ preview }) {
           coverImage{
             responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
               srcSet
-    webpSrcSet
-    sizes
-    src
-    width
-    height
-    aspectRatio
-    alt
-    title
-    base64
+              webpSrcSet
+              sizes
+              src
+              width
+              height
+              aspectRatio
+              alt
+              title
+              base64
             }
               
           }
-          author {
-            name
-            picture {
-              url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100})
-            }
-          }
         }
 
-        allPosts(orderBy: date_DESC, first: 20) {
+        allPosts(orderBy: date_DESC, first: 30) {
           title
           slug
           excerpt
