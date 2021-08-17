@@ -2,7 +2,7 @@
   "name": "cms-datocms",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_OPTIONS='--inspect' next",
     "build": "next build",
     "start": "next start",
     "export": "next build && next export"

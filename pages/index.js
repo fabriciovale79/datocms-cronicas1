@@ -8,6 +8,7 @@ import Layout from "../components/layout";
 import MoreStories from "../components/more-stories";
 import { request } from "../lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "../lib/fragments";
+import PostPreview from '../components/post-preview'
 
 export async function getStaticProps({ preview }) {
   const graphqlRequest = {
@@ -27,43 +28,9 @@ export async function getStaticProps({ preview }) {
         post(filter: {slug: {eq: "cover1"}}) {
           title
           slug
-          author {
-            name
-            picture {
-              url(imgixParams: {fm: jpg, fit: clip, mask:ellipse, w: 200, h: 200})
-            }
-          }
-          content {
-            value
-            blocks {
-              __typename
-              ...on ImageBlockRecord {
-                id
-                image {
-                  responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
-                    srcSet
-                    webpSrcSet
-                    sizes
-                    src
-                    width
-                    height
-                    aspectRatio
-                    alt
-                    title
-                    base64
-                  }
-                    
-                  
-                }
-              }
-            }
-          }
           date
-          ogImage: coverImage{
-            url(imgixParams: {fm: jpg, fit: clip,  w: 1.0 })
-          }
           coverImage{
-            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1.0 }) {
+            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1500 }) {
               srcSet
               webpSrcSet
               sizes
@@ -104,6 +71,8 @@ export async function getStaticProps({ preview }) {
     preview,
   };
 
+  console.log(graphqlRequest.query)
+
   return {
     props: {
       subscription: preview
@@ -130,20 +99,23 @@ export default function Index({ subscription }) {
   const morePosts = allPosts.slice(1);
   const metaTags = blog.seo.concat(site.favicon);
 
+
   return (
     <>
       <Layout preview={subscription.preview}>
         <Head>{renderMetaTags(metaTags)}</Head>
         <Container>
-          <Intro />
+          
           {heroPost && (
             <CoverPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              slug={allPosts[1].slug}
-              excerpt={heroPost.excerpt}
-            />
+            title={heroPost.title}
+            coverImage={heroPost.coverImage}
+            date={heroPost.date}
+            slug={allPosts[1].slug}
+            excerpt={heroPost.excerpt}
+          />
+
+
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
