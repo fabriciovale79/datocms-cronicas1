@@ -9,6 +9,7 @@ import PostHeader from "../../components/post-header";
 import SectionSeparator from "../../components/section-separator";
 import { request } from "../../lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "../../lib/fragments";
+import NavFooter from "../../components/nav-footer";
 
 export async function getStaticPaths() {
   const data = await request({ query: `{ allPosts { slug } }` });
@@ -130,8 +131,15 @@ export default function Post({ subscription, preview }) {
           />
           <PostBody content={post.content} />
         </article>
+        <footer className="w-full text-center border-t border-grey p-4 pin-b bg-blue-dark">
+          <p>This is our footer</p>
+        </footer>
+        
+
         <SectionSeparator />
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        
+        {//morePosts.length > 0 && <MoreStories posts={morePosts} />
+        }
       </Container>
     </Layout>
   );

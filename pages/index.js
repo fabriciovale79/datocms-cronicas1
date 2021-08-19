@@ -30,7 +30,7 @@ export async function getStaticProps({ preview }) {
           slug
           date
           coverImage{
-            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 1500 }) {
+            responsiveImage(imgixParams: {fm: jpg, fit: clip, w: 500 }) {
               srcSet
               webpSrcSet
               sizes
@@ -52,7 +52,7 @@ export async function getStaticProps({ preview }) {
           excerpt
           date
           coverImage {
-            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
+            responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 1000, h: 500 }) {
               ...responsiveImageFragment
             }
           }
